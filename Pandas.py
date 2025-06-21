@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 import os
 import numpy as np  
 import matplotlib.pyplot as plt
@@ -35,6 +36,26 @@ time_pent_alone_0_5.to_csv(filepath_0_5)
 time_spent_alone_6_10.to_csv(filepath_6_10)
 
 print(df.head())
+
+cursor = conn.cursor()
+
+csv_data = csv.reader(open('Datasets/personality_datasert.csv', 'r'))
+
+with open('Datasets\personality_datasert.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader) # Skip the header row.
+    for row in reader:
+        cursor.execute("INSERT INTO personality2 (Time_spent_Alone, Stage_fear, Social_event_attendance, Going_outside, Drained_after_socializing, \
+        Friends_circle_size, Post_frequency,Personality) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        row
+    )
+conn.commit()
+
+cursor.close()
+print ('done')
+
+
+
 print('Program completed successfully!')
 
 #print(df.shape())
