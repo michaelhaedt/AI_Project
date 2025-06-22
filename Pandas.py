@@ -28,11 +28,15 @@ filepath_6_10 = Path('Datasets/time_spent_alone_6_10.csv')
 
 df = pd.read_csv('Datasets\personality_datasert.csv')
 
+print(df.shape)
+
 time_spent_alone_6_10 = df[(df['Time_spent_Alone']) > 6]
 
-time_pent_alone_0_5 = df[(df['Time_spent_Alone'] < 5)]
+print(time_spent_alone_6_10.shape)
 
-time_pent_alone_0_5.to_csv(filepath_0_5)
+time_spent_alone_0_5 = df[(df['Time_spent_Alone'] < 5)]
+print(time_spent_alone_0_5.shape)
+time_spent_alone_0_5.to_csv(filepath_0_5)
 time_spent_alone_6_10.to_csv(filepath_6_10)
 
 print(df.head())
@@ -50,17 +54,9 @@ with open('Datasets\personality_datasert.csv', 'r') as f:
         row
     )
 conn.commit()
-
 cursor.close()
-print ('done')
+
 
 
 
 print('Program completed successfully!')
-
-#print(df.shape())
-#print("hello world")
-# If you are seeing weird debugger symbols in your output, it might be due to incorrect usage of print statements.
-# For example, `print(df())` should be `print(df)` or `print(df.head())`.
-# Also, ensure your file encoding is UTF-8 and your terminal supports Unicode.
-# If you are using an IDE, try restarting it or clearing the console.
